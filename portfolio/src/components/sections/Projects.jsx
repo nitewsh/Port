@@ -88,11 +88,11 @@ function ProjectCaseStudy({ project }) {
             <p className="text-sm leading-6 text-white/72">{project.problem}</p>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            {project.impact.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                <div className="text-xl font-semibold" style={{ color: project.color }}>{item.metric}</div>
-                <div className="mt-1 text-xs text-white/45">{item.label}</div>
+          <div className="mt-6 space-y-3">
+            <div className="eyebrow text-[10px] text-white/35">Business value</div>
+            {project.businessImpact.map((item) => (
+              <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
+                <div className="text-sm leading-6 text-white/72">{item}</div>
               </div>
             ))}
           </div>
@@ -173,7 +173,7 @@ export function Projects() {
         <SectionLabel
           label="Selected work"
           title={<>Cinematic case studies for real AI systems.</>}
-          subtitle="Each project is presented like an operating system for a business problem: context, architecture, workflow, constraints, and measurable outcomes."
+          subtitle="Each project is framed as an engineering case study: the problem, the system design, the workflow, the constraints, and the business value."
         />
 
         <div className="space-y-8 md:space-y-10">

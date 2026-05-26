@@ -8,28 +8,28 @@ const traits = [
     icon: Brain,
     title: 'AI Systems Architect',
     description:
-      'End-to-end intelligent systems from data ingestion to model serving. I think in pipelines, not just models.',
+      'Designing systems that connect interfaces, APIs, automation, and AI workflows into one coherent product.',
     color: '#63b3ed',
   },
   {
     icon: Code2,
-    title: 'Full-Stack AI Developer',
+    title: 'Product-Minded Builder',
     description:
-      'Bridging research prototypes and production systems. Every model I build ships.',
+      'Bridging React frontends, FastAPI services, and deployment pipelines so ideas become usable software.',
     color: '#9f7aea',
   },
   {
     icon: Cpu,
-    title: 'Performance Optimizer',
+    title: 'RAG & Workflow Engineer',
     description:
-      'Obsessed with latency, throughput, cost efficiency. Reduced inference costs by 64% in production.',
+      'Building retrieval systems, automation flows, and operational interfaces that support real work.',
     color: '#68d391',
   },
   {
     icon: Globe,
-    title: 'Enterprise Focused',
+    title: 'Applied ML Practitioner',
     description:
-      'AI for Fortune 500 companies. Fluent in compliance, scale, and organizational change.',
+      'Applying deep learning to concrete use cases, from structured mental-health screening research to medical imaging tasks.',
     color: '#f6e05e',
   },
 ]
@@ -82,9 +82,9 @@ function ProfileCard() {
       {/* Quick facts */}
       <div className="glass rounded-xl p-4 space-y-2.5">
         {[
-          { icon: MapPin, text: 'India · Remote-first' },
-          { icon: Calendar, text: '4+ years AI/ML experience' },
-          { icon: Zap, text: 'Open to global opportunities' },
+          { icon: MapPin, text: 'AI Systems Engineer' },
+          { icon: Calendar, text: 'Enterprise AI platforms + RAG systems' },
+          { icon: Zap, text: 'Workflow automation + scalable infrastructure' },
         ].map(({ icon: Icon, text }) => (
           <div key={text} className="flex items-center gap-2.5 text-sm text-[#a0aec0]">
             <Icon size={13} className="text-[#63b3ed] flex-shrink-0" />
@@ -116,16 +116,15 @@ export function About() {
             <div className="space-y-5 mb-10">
               <motion.p variants={itemVariants} className="text-lg text-[#a0aec0] leading-relaxed">
                 I&apos;m <span className="text-white font-semibold">Nitesh Jha</span>, an AI engineer
-                who builds systems that make businesses measurably smarter. Not demos —
-                production systems handling millions of requests and generating real ROI.
+                focused on intelligent systems, workflow automation, enterprise AI platforms,
+                RAG systems, and scalable infrastructure.
               </motion.p>
               <motion.p variants={itemVariants} className="text-[#718096] leading-relaxed">
                 My work sits at the intersection of{' '}
-                <span className="text-[#63b3ed]">large language models</span>,{' '}
-                <span className="text-[#9f7aea]">autonomous agents</span>, and{' '}
-                <span className="text-[#68d391]">enterprise infrastructure</span>. I&apos;ve shipped
-                RAG pipelines, fine-tuned transformers for specialized domains, and built
-                governance frameworks compliant with EU AI Act and GDPR.
+                <span className="text-[#63b3ed]">AI product interfaces</span>,{' '}
+                <span className="text-[#9f7aea]">workflow-driven backend systems</span>, and{' '}
+                <span className="text-[#68d391]">applied machine learning</span>. The work ranges from
+                HR analytics platforms and governance systems to RAG chatbots and medical imaging models.
               </motion.p>
 
               {/* Philosophy callout */}
@@ -148,7 +147,7 @@ export function About() {
               <motion.div variants={itemVariants} className="flex items-center gap-2.5">
                 <Zap size={13} className="text-[#63b3ed]" />
                 <span className="text-sm text-[#718096]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-                  Currently exploring: Multi-modal agents · AI governance
+                  Current focus: enterprise AI systems · workflow automation · retrieval pipelines
                 </span>
               </motion.div>
             </div>

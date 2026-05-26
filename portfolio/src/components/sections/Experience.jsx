@@ -34,7 +34,7 @@ function TimelineEntry({ exp, index, isActive, onClick }) {
       </div>
 
       {/* Content */}
-      <div className={`flex-1 pb-10 rounded-2xl p-6 transition-all duration-400 ${
+      <div className={`flex-1 pb-10 rounded-2xl p-6 transition-all duration-300 ${
         isActive ? 'glass' : 'hover:bg-white/[0.02]'
       }`}
         style={{
@@ -53,7 +53,7 @@ function TimelineEntry({ exp, index, isActive, onClick }) {
                 {exp.type}
               </span>
             </div>
-            <p className="text-[#63b3ed] font-medium text-sm">{exp.company}</p>
+            <p className="text-[#63b3ed] font-medium text-sm">{exp.context}</p>
           </div>
           <div className="flex items-center gap-1.5 text-[#4a5568] text-xs" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
             <Calendar size={12} />
@@ -124,9 +124,9 @@ export function Experience() {
     <SectionWrapper id="experience" className="bg-[#05070b]">
       <div className="max-w-5xl mx-auto px-6">
         <SectionLabel
-          label="Experience"
-          title={<>Where theory<br />became production.</>}
-          subtitle="A career built on shipping — not just building."
+          label="Engineering Focus"
+          title={<>How the work<br />translates in practice.</>}
+          subtitle="A truthful view of current focus areas, research, and representative systems."
         />
 
         <div className="relative">

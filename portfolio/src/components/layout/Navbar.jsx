@@ -103,7 +103,7 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="mailto:nitesh@example.com"
+              href="mailto:nitesh.jha22@st.niituniversity.in"
               className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#91baff]/30 hover:bg-[#91baff]/10 hover:text-[#dbe8ff]"
             >
               Start a conversation
@@ -153,7 +153,7 @@ export function Navbar() {
                 </button>
               ))}
               <a
-                href="mailto:nitesh@example.com"
+                href="mailto:nitesh.jha22@st.niituniversity.in"
                 className="mt-2 rounded-xl border border-[#91baff]/20 bg-[#91baff]/10 px-4 py-3 text-center text-sm font-semibold text-[#dbe8ff]"
               >
                 Start a conversation

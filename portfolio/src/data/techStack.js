@@ -2,25 +2,25 @@ export const techCategories = [
   {
     category: 'AI / ML',
     color: '#63b3ed',
-    summary: 'Model development, retrieval systems, and production-grade inference pipelines.',
-    items: ['Python', 'PyTorch', 'TensorFlow', 'Hugging Face', 'LangChain', 'LlamaIndex', 'OpenCV', 'scikit-learn'],
+    summary: 'Deep learning, retrieval, and applied AI workflows used across chatbot and imaging systems.',
+    items: ['TensorFlow', 'ChromaDB', 'LLaMA3', 'Semantic Search', 'CNN Models'],
   },
   {
     category: 'Backend Infrastructure',
     color: '#9f7aea',
-    summary: 'APIs, orchestration, state, and event-driven systems behind enterprise AI products.',
-    items: ['FastAPI', 'Node.js', 'PostgreSQL', 'Redis', 'Apache Kafka', 'GraphQL', 'Vector Databases', 'RAG Services'],
+    summary: 'Service-layer foundations for dashboards, workflow systems, and modular AI platforms.',
+    items: ['FastAPI', 'MongoDB', 'JWT Authentication', 'REST APIs', 'Modular Services'],
   },
   {
     category: 'Frontend Systems',
     color: '#68d391',
-    summary: 'Interfaces for operational dashboards, internal tools, and AI-native product surfaces.',
-    items: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Framer Motion', 'GSAP', 'D3.js', 'Design Systems'],
+    summary: 'Product surfaces and motion systems for premium, responsive interfaces.',
+    items: ['React', 'Vite', 'TailwindCSS', 'Framer Motion', 'GSAP', 'Lenis'],
   },
   {
     category: 'DevOps & Deployment',
     color: '#f6e05e',
-    summary: 'Reliable environments for shipping, monitoring, scaling, and governing AI workloads.',
-    items: ['Docker', 'Kubernetes', 'AWS', 'GovCloud', 'Terraform', 'CI/CD', 'Observability', 'GPU Workloads'],
+    summary: 'Containerized delivery and workflow automation for repeatable deployment pipelines.',
+    items: ['Docker', 'Jenkins', 'CI/CD', 'Containerized Deployment'],
   },
 ]

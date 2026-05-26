@@ -3,7 +3,7 @@ import { itemVariants } from './SectionWrapper'
 
 export function SectionLabel({ label, title, subtitle }) {
   return (
-    <div className="mb-14 md:mb-18 lg:mb-20">
+    <div className="mb-14 md:mb-16 lg:mb-20">
       <motion.div
         variants={itemVariants}
         className="flex items-center gap-3 mb-5"

@@ -1,184 +1,160 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, GitBranch, Globe, AtSign, Send, Loader2, CheckCircle2, ArrowUpRight } from 'lucide-react'
+import { Mail, Send, ArrowUpRight } from 'lucide-react'
 import { SectionWrapper, itemVariants } from '../ui/SectionWrapper'
 import { SectionLabel } from '../ui/SectionLabel'
 
-const socialLinks = [
-  { icon: GitBranch, label: 'GitHub', href: 'https://github.com', username: '@niteshjha' },
-  { icon: Globe, label: 'LinkedIn', href: 'https://linkedin.com', username: 'linkedin.com/in/niteshjha' },
-  { icon: AtSign, label: 'Twitter / X', href: 'https://twitter.com', username: '@niteshjha_ai' },
-  { icon: Mail, label: 'Email', href: 'mailto:nitesh@example.com', username: 'nitesh@example.com' },
-]
+const contactEmail = 'nitesh.jha22@st.niituniversity.in'
 
 export function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | loading | success
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('loading')
-    // Simulate async
-    await new Promise((r) => setTimeout(r, 1500))
-    setStatus('success')
-  }
+  const mailtoHref = useMemo(() => {
+    const subject = encodeURIComponent(
+      formState.name ? `Portfolio inquiry from ${formState.name}` : 'Portfolio inquiry'
+    )
+    const body = encodeURIComponent(
+      [
+        formState.name ? `Name: ${formState.name}` : '',
+        formState.email ? `Email: ${formState.email}` : '',
+        '',
+        formState.message || 'Hello Nitesh,',
+      ].join('\n')
+    )
 
-  const inputClass = `w-full px-4 py-3.5 rounded-xl text-white text-sm placeholder-[#4a5568] outline-none transition-all duration-300 focus:border-[#63b3ed]/50 focus:ring-1 focus:ring-[#63b3ed]/30`
-  const inputStyle = {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
-  }
+    return `mailto:${contactEmail}?subject=${subject}&body=${body}`
+  }, [formState])
+
+  const inputClass =
+    'w-full rounded-xl border border-white/8 bg-white/[0.04] px-4 py-3.5 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/25 focus:border-[#91baff]/40 focus:bg-white/[0.05]'
 
   return (
     <SectionWrapper id="contact" className="relative overflow-hidden bg-[#05070b]">
-      {/* Background decoration */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(99,179,237,0.04) 0%, transparent 70%)' }}
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[420px] w-[640px] -translate-x-1/2"
+        style={{ background: 'radial-gradient(ellipse, rgba(145,186,255,0.05) 0%, transparent 70%)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <SectionLabel
           label="Contact"
-          title={<>Let&apos;s build<br />something remarkable.</>}
-          subtitle="Open to roles, consulting engagements, and interesting problems."
+          title={<>Let&apos;s build something serious.</>}
+          subtitle="For roles, collaborations, or AI system discussions, the best path is direct email."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left: form */}
-          <motion.div variants={itemVariants}>
-            {status === 'success' ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass rounded-2xl p-10 flex flex-col items-center justify-center text-center h-full min-h-64"
-                style={{ border: '1px solid rgba(104,211,145,0.2)' }}
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div variants={itemVariants} className="surface-outline glass rounded-[1.75rem] p-8">
+            <div className="mb-6">
+              <div className="eyebrow text-[10px] text-white/40">Direct outreach</div>
+              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">
+                Compose an email with context already filled in
+              </h3>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-[#a5aec5]">
+                This form does not pretend to submit anywhere. It prepares a real email to
+                <span className="text-white"> {contactEmail}</span> so outreach stays simple and reliable.
+              </p>
+            </div>
+
+            <div className="space-y-5">
+              <div>
+                <label className="eyebrow mb-2 block text-[10px] text-white/35">Your name</label>
+                <input
+                  className={inputClass}
+                  placeholder="Your name"
+                  value={formState.name}
+                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="eyebrow mb-2 block text-[10px] text-white/35">Your email</label>
+                <input
+                  type="email"
+                  className={inputClass}
+                  placeholder="you@company.com"
+                  value={formState.email}
+                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="eyebrow mb-2 block text-[10px] text-white/35">Message</label>
+                <textarea
+                  rows={6}
+                  className={`${inputClass} resize-none`}
+                  placeholder="What kind of AI system, workflow, or product problem are you solving?"
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                />
+              </div>
+
+              <motion.a
+                href={mailtoHref}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-4 text-sm font-medium text-[#05070b] transition-transform duration-300 hover:-translate-y-0.5"
+                whileTap={{ scale: 0.99 }}
               >
-                <CheckCircle2 size={48} className="text-[#68d391] mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">Message sent!</h3>
-                <p className="text-[#718096] text-sm">I&apos;ll get back to you within 24 hours.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-5">
-                <div>
-                  <label className="text-xs text-[#4a5568] mb-2 block" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-                    YOUR NAME
-                  </label>
-                  <input
-                    className={inputClass}
-                    style={inputStyle}
-                    placeholder="Alex Chen"
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-[#4a5568] mb-2 block" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-                    EMAIL ADDRESS
-                  </label>
-                  <input
-                    type="email"
-                    className={inputClass}
-                    style={inputStyle}
-                    placeholder="alex@company.com"
-                    value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-[#4a5568] mb-2 block" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-                    MESSAGE
-                  </label>
-                  <textarea
-                    rows={5}
-                    className={`${inputClass} resize-none`}
-                    style={inputStyle}
-                    placeholder="Tell me about the problem you're solving..."
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    required
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full py-4 rounded-xl font-semibold text-sm text-white flex items-center justify-center gap-2 transition-all duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, #63b3ed, #9f7aea)',
-                    boxShadow: '0 0 30px rgba(99,179,237,0.2)',
-                  }}
-                  whileHover={{ boxShadow: '0 0 50px rgba(99,179,237,0.35)', scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                >
-                  {status === 'loading' ? (
-                    <>
-                      <Loader2 size={16} className="animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={16} />
-                      Send Message
-                    </>
-                  )}
-                </motion.button>
-              </form>
-            )}
+                <Send size={16} />
+                Send via email
+              </motion.a>
+            </div>
           </motion.div>
 
-          {/* Right: contact info */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            <div className="glass rounded-2xl p-7">
-              <h3 className="text-lg font-semibold text-white mb-2">Open to opportunities</h3>
-              <p className="text-[#718096] text-sm leading-relaxed mb-5">
-                Looking for senior AI/ML engineering roles, technical leadership positions, or
-                high-impact consulting engagements. I move fast and build for the long term.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['Full-time', 'Contract', 'Advisory', 'Consulting'].map((type) => (
+          <motion.div variants={itemVariants} className="space-y-5">
+            <div className="surface-outline glass rounded-[1.75rem] p-7">
+              <div className="eyebrow text-[10px] text-white/40">Primary contact</div>
+              <a
+                href={`mailto:${contactEmail}`}
+                className="mt-4 flex items-center justify-between gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-5 py-4 transition-colors duration-300 hover:border-[#91baff]/25 hover:bg-[#91baff]/[0.06]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#91baff]/20 bg-[#91baff]/10">
+                    <Mail size={16} className="text-[#91baff]" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">nitesh.jha22@st.niituniversity.in</div>
+                    <div className="mt-1 text-xs text-white/40">Best way to reach out</div>
+                  </div>
+                </div>
+                <ArrowUpRight size={15} className="text-white/30" />
+              </a>
+            </div>
+
+            <div className="surface-outline glass rounded-[1.75rem] p-7">
+              <div className="eyebrow text-[10px] text-white/40">What I build</div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  'Enterprise AI platforms',
+                  'Workflow automation systems',
+                  'RAG chatbots',
+                  'Executive dashboards',
+                  'Scalable infrastructure',
+                ].map((item) => (
                   <span
-                    key={type}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium"
-                    style={{
-                      background: 'rgba(99,179,237,0.1)',
-                      border: '1px solid rgba(99,179,237,0.2)',
-                      color: '#63b3ed',
-                    }}
+                    key={item}
+                    className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[11px] text-white/65"
                   >
-                    {type}
+                    {item}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-3">
-              {socialLinks.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-5 py-4 rounded-xl glass glass-hover group"
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ background: 'rgba(99,179,237,0.1)', border: '1px solid rgba(99,179,237,0.15)' }}
-                    >
-                      <link.icon size={15} className="text-[#63b3ed]" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-white">{link.label}</div>
-                      <div className="text-xs text-[#4a5568]">{link.username}</div>
-                    </div>
+            <div className="surface-outline glass rounded-[1.75rem] p-7">
+              <div className="eyebrow text-[10px] text-white/40">Core stack</div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {[
+                  'React + Vite',
+                  'TailwindCSS + Motion',
+                  'FastAPI + MongoDB',
+                  'Docker + Jenkins',
+                  'TensorFlow',
+                  'ChromaDB',
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-sm text-white/72">
+                    {item}
                   </div>
-                  <ArrowUpRight size={14} className="text-[#4a5568] group-hover:text-[#63b3ed] transition-colors duration-200" />
-                </motion.a>
-              ))}
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

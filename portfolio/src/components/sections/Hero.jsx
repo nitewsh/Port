@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown, ArrowRight, Sparkles } from 'lucide-react'
 
 const systemNodes = [
-  { id: 'signals', label: 'Signals', x: '12%', y: '18%' },
-  { id: 'orchestration', label: 'Orchestration', x: '50%', y: '12%' },
-  { id: 'reasoning', label: 'Reasoning', x: '76%', y: '28%' },
-  { id: 'policies', label: 'Guardrails', x: '22%', y: '56%' },
-  { id: 'actions', label: 'Actions', x: '56%', y: '60%' },
+  { id: 'signals', label: 'Inputs', x: '12%', y: '18%' },
+  { id: 'orchestration', label: 'Workflows', x: '50%', y: '12%' },
+  { id: 'reasoning', label: 'Retrieval', x: '76%', y: '28%' },
+  { id: 'policies', label: 'Services', x: '22%', y: '56%' },
+  { id: 'actions', label: 'Automation', x: '56%', y: '60%' },
   { id: 'analytics', label: 'Analytics', x: '82%', y: '72%' },
 ]
 
@@ -53,18 +53,18 @@ function InfrastructureVisualization() {
       <div className="relative z-10 mb-6 flex items-center justify-between">
         <div>
           <div className="eyebrow text-[10px] text-[#91baff]">System architecture</div>
-          <div className="mt-2 text-xl font-semibold text-white">AI infrastructure command layer</div>
+          <div className="mt-2 text-xl font-semibold text-white">AI systems architecture view</div>
         </div>
         <div className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-white/55">
-          Live orchestration model
+          Product systems map
         </div>
       </div>
 
       <div className="relative min-h-[430px] rounded-[1.5rem] border border-white/8 bg-[#080b12] p-4">
         <div className="absolute inset-x-6 top-6 flex items-center justify-between text-[11px] text-white/35">
           <span>Input fabric</span>
-          <span>Reasoning layer</span>
-          <span>Execution</span>
+          <span>Intelligence layer</span>
+          <span>Product layer</span>
         </div>
 
         <div className="absolute inset-0">
@@ -93,7 +93,7 @@ function InfrastructureVisualization() {
                 <span className="text-xs text-white/80">{node.label}</span>
               </div>
               <div className="text-[11px] leading-5 text-white/45">
-                {index % 2 === 0 ? 'Event-driven' : 'Low-latency'}
+                {index % 2 === 0 ? 'Modular' : 'Operational'}
               </div>
             </motion.div>
           </motion.div>
@@ -110,9 +110,9 @@ function InfrastructureVisualization() {
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
-              ['Agent workflows', 'Autonomous pipelines'],
-              ['Governance layer', 'Policy + explainability'],
-              ['Analytics surfaces', 'Dashboards + ops'],
+              ['Workflow automation', 'Role-aware task movement'],
+              ['RAG systems', 'Search + response flows'],
+              ['Enterprise dashboards', 'Monitoring + reporting'],
             ].map(([title, body]) => (
               <div key={title} className="rounded-xl border border-white/8 bg-black/20 px-3 py-3">
                 <div className="text-sm font-medium text-white">{title}</div>
@@ -142,7 +142,7 @@ export function Hero() {
     >
       <HeroBackdrop yOne={yOne} yTwo={yTwo} />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-14 px-6 pb-18 pt-10 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:items-center lg:gap-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-14 px-6 pb-20 pt-10 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:items-center lg:gap-12">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -159,7 +159,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.95, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="text-balance max-w-4xl text-[3.25rem] font-semibold leading-[0.97] tracking-[-0.055em] text-white sm:text-[4.25rem] md:text-[5.4rem] lg:text-[5.6rem]"
+            className="text-balance max-w-4xl text-[clamp(3rem,8vw,5.4rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-white"
           >
             AI Engineer Building Intelligent Systems &amp; Autonomous Workflows
           </motion.h1>
@@ -189,12 +189,12 @@ export function Hero() {
                 <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </button>
-            <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:border-[#91baff]/25 hover:bg-[#91baff]/[0.08]"
+            <a
+              href="mailto:nitesh.jha22@st.niituniversity.in"
+              className="rounded-full border border-white/10 bg-white/[0.04] px-6 py-3.5 text-center text-sm font-medium text-white transition-all duration-300 hover:border-[#91baff]/25 hover:bg-[#91baff]/[0.08]"
             >
               Discuss an AI build
-            </button>
+            </a>
           </motion.div>
 
           <motion.div
@@ -205,15 +205,15 @@ export function Hero() {
           >
             <div>
               <div className="eyebrow text-[10px] text-white/40">Focus</div>
-              <div className="mt-2 text-white">AI platforms &amp; orchestration</div>
+              <div className="mt-2 text-white">AI platforms &amp; workflow automation</div>
             </div>
             <div>
               <div className="eyebrow text-[10px] text-white/40">Specialty</div>
-              <div className="mt-2 text-white">RAG, governance, enterprise systems</div>
+              <div className="mt-2 text-white">RAG systems, governance flows, enterprise dashboards</div>
             </div>
             <div>
               <div className="eyebrow text-[10px] text-white/40">Outcome</div>
-              <div className="mt-2 text-white">Operational products with measurable impact</div>
+              <div className="mt-2 text-white">Serious systems built for real operational use</div>
             </div>
           </motion.div>
         </div>
